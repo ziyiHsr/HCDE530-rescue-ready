@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Safe-area CSS variables ────────────────────────────────────── */
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+}
+
+/* ─── Base reset ─────────────────────────────────────────────────── */
+*, *::before, *::after {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+html {
+  height: 100%;
+  /* Prevent font size inflation on iOS landscape */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background: #020617; /* slate-950 — outer desktop background */
+  overflow: hidden;
+}
+
+/* ─── Phone shell (desktop) ─────────────────────────────────────── */
+/* On desktop (≥ 640px) we render the app inside a phone-shaped card.
+   On real mobile (<640px) it fills the whole screen. */
+#root {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-shell {
+  /* Mobile: true fullscreen */
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #0f172a;
+}
+
+@media (min-width: 640px) {
+  .app-shell {
+    /* iPhone 14 Pro Max viewport: 430 × 932 */
+    width: 393px;
+    height: min(852px, 95dvh);
+    border-radius: 44px;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.08),
+      0 32px 80px rgba(0,0,0,0.8),
+      0 0 0 8px #1e293b,
+      0 0 0 9px rgba(255,255,255,0.04);
+    overflow: hidden;
+  }
+}
+
+/* ─── Safe-area padding helpers ─────────────────────────────────── */
+/* On real devices the safe-area values are non-zero.
+   Inside the desktop shell they're 0, so these are no-ops on desktop. */
+.pt-safe  { padding-top:    max(0px, var(--sat)); }
+.pb-safe  { padding-bottom: max(16px, calc(var(--sab) + 8px)); }
+.px-safe  { padding-left: var(--sal); padding-right: var(--sar); }
+
+/* Bottom content guard — ensures footers clear the home indicator */
+.footer-safe {
+  padding-bottom: max(24px, calc(var(--sab) + 12px));
+}
+
+/* ─── Hide scrollbars, keep scrolling functional ────────────────── */
+* {
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE / Edge legacy */
+}
+*::-webkit-scrollbar {
+  display: none;               /* Chrome / Safari / WebKit */
+}
+
+/* ─── Leaflet z-index fixes ─────────────────────────────────────── */
+.leaflet-pane         { z-index: 10; }
+.leaflet-top,
+.leaflet-bottom       { z-index: 20; }
