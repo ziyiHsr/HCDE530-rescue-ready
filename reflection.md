@@ -20,6 +20,10 @@ I would also expand the emergency support features. For example, the application
 
 ## What does this work demonstrate?
 
-This project demonstrates competencies in user-centered design, specification engineering, and technical prototyping. From a design perspective, I translated a complex emergency response process into a simplified workflow that prioritizes speed, clarity, and action. From an engineering perspective, I implemented interactive navigation, persistent emergency-state management, location search, map visualization, route guidance, and timer functionality within a deployed application.
+This project demonstrates C1 (Vibecoding and Rapid Prototyping), C4 (APIs and Data Acquisition), and C8 (Building and Deploying a Complete Tool).
 
-The project also demonstrates iterative specification development. Throughout the quarter, I continuously refined the scope, removed lower-value features, and adjusted interactions based on emerging requirements. For example, I redesigned the relationship between Emergency Mode and the AED map so users could access location information without losing the active emergency session. The final product reflects both design reasoning and implementation decisions working together to support a clear user need.
+For C1, I used Bolt to rapidly prototype and iterate on Rescue Ready. Rather than accepting the first generated version, I repeatedly refined the interface and workflow, including AED map interactions, emergency-mode navigation, the CPR guide, and the transition from a web-style layout to a mobile-app experience.
+
+For C4, I integrated external AED location and mapping data into the application. This allowed users to search locations, view nearby AEDs, calculate distances, and navigate between emergency response steps and real-world AED information.
+
+For C8, Rescue Ready was developed as a complete, deployable tool that addresses a real HCD problem. The final application combines emergency guidance, AED discovery, CPR instructions, and rescue summaries into a single user experience. Together, these features demonstrate my ability to design, build, iterate, and deploy a functional tool for a real-world use case.
